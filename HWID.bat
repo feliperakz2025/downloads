@@ -13,7 +13,7 @@
 
 
 ::  To activate, run the script with "/HWID" parameter or change 0 to 1 in below line
-set _act=1
+set _act=0
 
 ::  To disable changing edition if current edition doesn't support HWID activation, change the value to 1 from 0 or run the script with "/HWID-NoEditionChange" parameter
 set _NoEditionChange=0
@@ -425,6 +425,8 @@ call :dk_color2 %_White% "     " %Green% "%winos% is already permanently activat
 echo ___________________________________________________________________________________________
 if %_unattended%==1 goto dk_done
 echo:
+timeout /t 3
+Exit
 choice /C:10 /N /M ">    [1] Activate Anyway [0] %_exitmsg% : "
 if errorlevel 2 exit /b
 )
@@ -1708,6 +1710,7 @@ exit /b
 ::========================================================================================================================================
 
 :dk_done
+
 echo:
 if %_unattended%==1 timeout /t 2 & exit /b
 
